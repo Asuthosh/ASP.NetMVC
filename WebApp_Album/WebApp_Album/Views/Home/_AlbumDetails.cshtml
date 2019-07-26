@@ -1,0 +1,23 @@
+﻿@model WebApp_Album.ViewModels.AlbumDetails
+
+<div class="col-sm-6" style="border-bottom-style:outset">
+    <div class="a">
+        <h3><a href="~/Photos/Index?albumId=@Model.albumId" style="text-overflow:clip; color:brown">@Model.albumtitle</a></h3>
+    </div>
+    <div class="col-sm-6">
+        <img src="@Model.thumbnailUrl" />
+    </div>
+    <div class="col-sm-6">
+        <label>Author       : <a href="~/Users/Index?userId=@Model.userid">@Model.username </a></label><br />
+        <label>E-mail       : @Model.email</label><br />
+        <label>Phone        : @Model.phone</label><br />
+        <label>Street       : @Model.address.street, @Model.address.suite</label><br />
+        <label>City         : @Model.address.city, @Model.address.zipcode</label><br />
+        <label>Geo Location : @Model.address.geo.lat,@Model.address.geo.lng</label><br /><br />
+    </div>
+</div>
+
+
+
+
+

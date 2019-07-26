@@ -1,0 +1,52 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using WebApp_Album.Models
+@model WebApp_Album.Models.User
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page">
+    <br />
+    <div class="container-fluid" style="background-color:seashell; ">
+        <div style="border-bottom:double">
+            <h1 class="caption" style="color:brown">User Details</h1>
+        </div>
+        
+        <div class="row" style="border-bottom:medium">
+
+            <div class="col-sm-6">
+                <h3>Name            : @Model.name </h3><br />
+                <label>E-mail       : @Model.email</label><br />
+                <label>Phone        : @Model.phone</label><br />
+                <label>Website      : @Model.website</label><br />
+                <h3>Address</h3>
+                <br />
+                <label>Street        : @Model.address.street</label><br />
+                <label>Suite         : @Model.address.suite</label><br />
+                <label>City          : @Model.address.city</label><br />
+                <label>ZipCode       : @Model.address.zipcode</label><br />
+                <label>Geo Location  : @Model.address.geo.lat,@Model.address.geo.lng</label><br />
+                <br />
+                <h3><a href="~/Posts/Index?userId=@Model.id" onclick="basicPopup(this.href);return false">Click to View the User Posts</a></h3>
+                <br />
+            </div>
+            <div class="col-sm-6">
+                <h3>Company:        : @Model.company.name </h3><br />
+                <label>Catch Phrase : @Model.company.catchPhrase</label><br />
+                <label>BS           : @Model.company.bs</label><br />
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+        <div style="border-bottom:groove"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Popup window function
+    function basicPopup(url) {
+        popupWindow = window.open(url, 'popUpWindow', 'height=500,width=500,left=50,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+    }
+</script>

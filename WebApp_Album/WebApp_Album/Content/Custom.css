@@ -1,0 +1,10 @@
+﻿
+.trim_title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ .trim_title a.hover {
+        overflow: visible;
+ }

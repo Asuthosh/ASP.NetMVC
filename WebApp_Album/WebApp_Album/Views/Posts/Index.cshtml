@@ -1,0 +1,35 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebApp_Album.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+{
+    <div class="page">
+        <div class="row" style="border-bottom:double">
+            <div class="col-sm-12">
+                <h2 class="caption" style="color:firebrick">Posts by User</h2>
+            </div>
+        </div>
+        <br />
+        <div class="container-fluid" style="background-color:ghostwhite; ">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <strong>@item.title</strong>
+                    <p>     @item.body</p>
+                }
+            </div>
+            <br />
+            <div style="border-bottom:groove"></div>
+        </div>
+    </div>
+}
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new
+{
+    pageNumber
+}))

@@ -1,0 +1,56 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using WebApp_Album.ViewModels
+@model IPagedList<AlbumDetails>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    var users = ViewData["Users"] as List<WebApp_Album.Models.User>;
+}
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <head>
+        <style>
+            div.a {
+                white-space: nowrap;
+                overflow:hidden;
+                text-overflow: ellipsis;
+            }
+
+            div.a:hover {
+                overflow: visible;
+            }
+        </style>
+    </head>
+    <div class="page">
+
+        <div class="row" style="border-bottom:double">
+            <div class="col-sm-6">
+                <h2 class="caption" style="color:brown">Albums Collection</h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <b>Search Option: </b>@Html.RadioButton("option", "Author") <text>Author</text> @Html.RadioButton("option", "AlbumTitle") <text> AlbumTitle </text>
+                @Html.TextBox("search") <input type="submit" name="submit" value="Search" />
+            </div>
+        </div>
+        <div class="container-fluid" style="background-color:seashell; ">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    @Html.Partial("_AlbumDetails", item)
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new
+{
+pageNumber,
+    option = Request.QueryString["option"],
+    search = Request.QueryString["search"]
+}))
